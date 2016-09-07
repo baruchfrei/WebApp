@@ -11,4 +11,12 @@ EXPOSE 80
 COPY . /app
 
 # Start the app
-ENTRYPOINT dotnet WebApp.dll
+# ENTRYPOINT dotnet WebApp.dll
+
+ARG CONTAINER_PORT=80
+ARG SERVER_URLS=http://*:$CONTAINER_PORT
+ENV SERVER.URLS $SERVER_URLS
+EXPOSE $CONTAINER_PORT
+
+ENTRYPOINT ["dnx", "-p", "project.json", "web"]
+
