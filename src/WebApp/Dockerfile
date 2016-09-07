@@ -5,8 +5,8 @@ WORKDIR /app
 RUN ["dotnet", "restore"]
 RUN ["dotnet", "build"]
  
-EXPOSE 80/tcp
-ENV ASPNETCORE_URLS http://*:80
+EXPOSE 90/tcp
+ENV ASPNETCORE_URLS http://*:90
  
 ENTRYPOINT ["dotnet", "run"]
 
