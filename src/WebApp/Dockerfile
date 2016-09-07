@@ -1,22 +1,38 @@
-FROM microsoft/dotnet:1.0.0-core
-
-# Set the Working Directory
+FROM microsoft/dotnet:latest
+COPY . /app
 WORKDIR /app
 
+ 
+EXPOSE 80/tcp
+ENV ASPNETCORE_URLS http://*:5000
+ 
+ENTRYPOINT ["dotnet", "run"]
+
+
+
+
+
+
+#FROM microsoft/dotnet:1.0.0-core
+
+
+# Set the Working Directory
+# WORKDIR /app
+
 # Configure the listening port to 80
-ENV ASPNETCORE_URLS http://*:80
-EXPOSE 80
+# ENV ASPNETCORE_URLS http://*:80
+# EXPOSE 80
 
 # Copy the app
-COPY . /app
+# COPY . /app
 
 # Start the app
 # ENTRYPOINT dotnet WebApp.dll
 
-ARG CONTAINER_PORT=80
-ARG SERVER_URLS=http://*:$CONTAINER_PORT
-ENV SERVER.URLS $SERVER_URLS
-EXPOSE $CONTAINER_PORT
+# ARG CONTAINER_PORT=80
+# ARG SERVER_URLS=http://*:$CONTAINER_PORT
+# ENV SERVER.URLS $SERVER_URLS
+# EXPOSE $CONTAINER_PORT
 
-ENTRYPOINT ["dnx", "-p", "project.json", "web"]
+# ENTRYPOINT ["dnx", "-p", "project.json", "web"]
 
